@@ -32,6 +32,19 @@ class School(ndb.Model):
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
+        #if email is in datastore contue to Main Page w list of joinEvent
+        #creting a list that stores all the emails in datastore
+        user_list = User.query().fetch().email()
+
+        #creating an if ststment that checks if the email used to \
+        #login is already in datastore
+        if (login.email() in user_list):
+            #the structure of the main page
+
+        #redirect user to make account page
+        #where the create a user model with their email and extra info
+        else ()
+
 
         #for a get request
         #Step 3: Use the Jinja environment to get our HTML
