@@ -69,7 +69,7 @@ app = webapp2.WSGIApplication([
     ('/', MainPage), #this maps the root url to the Main Page Handler
     ('/joinEvent' , JoinEventPage),
     ('/about', AboutPage),
-    ('/createEvent', CreateNewEventPage),
+    ('/createEvent', CreateNewEventPage)
 
 
 ], debug=True)
