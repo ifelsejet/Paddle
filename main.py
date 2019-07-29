@@ -17,15 +17,18 @@ jinja_env = jinja2.Environment(
 
 class User(ndb.Model):
     name = ndb.StringProperty(required=True)
-    school = ndb.StringPropery(required=True)
+    #school = ndb.StringProperty(required=True)
     email = ndb.StringProperty(required=True)
-    phoneNumber = ndb.StringPropery(required=True)
+    #phoneNumber = ndb.StringProperty(required=True)
     #Example : 2023
     classYear = ndb.IntegerProperty(required= True)
 
-# class School(ndb.Model):
-#     name = ndb.StringPropery(required = True)
-#     facility = ndb.StringProperty(required = True)
+    def describe(self):
+        return "%s goes to" % (self.name)
+
+class School(ndb.Model):
+    name = ndb.StringProperty(required = True)
+    facility = ndb.StringProperty(required = True)
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
@@ -60,6 +63,7 @@ app = webapp2.WSGIApplication([
     ('/', MainPage), #this maps the root url to the Main Page Handler
     ('/joinEvent' , JoinEventPage),
     ('/about', AboutPage),
+    ('/createEvent', createEvent)
 
 
 ], debug=True)
