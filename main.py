@@ -57,6 +57,12 @@ class AboutPage(webapp2.RequestHandler):
         #Step 3: Use the Jinja environment to get our HTML
         template = jinja_env.get_template("templates/about.html")
         self.response.write(template.render())
+class CreateNewEventPage(webapp2.RequestHandler):
+    def get(self): #for a get request
+
+        #Step 3: Use the Jinja environment to get our HTML
+        template = jinja_env.get_template("templates/createEvent.html")
+        self.response.write(template.render())
 # the app configuration section
 app = webapp2.WSGIApplication([
     ('/createaccount', CreateAccount),
