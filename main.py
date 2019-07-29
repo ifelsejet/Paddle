@@ -17,32 +17,32 @@ jinja_env = jinja2.Environment(
 
 class User(ndb.Model):
     name = ndb.StringProperty(required=True)
-    school = ndb.StringPropery(required=True)
+    #school = ndb.StringProperty(required=True)
     email = ndb.StringProperty(required=True)
-    phoneNumber = ndb.StringPropery(required=True)
+    #phoneNumber = ndb.StringProperty(required=True)
     #Example : 2023
     classYear = ndb.IntegerProperty(required= True)
 
+    def describe(self):
+        return "%s goes to" % (self.name)
+
 class School(ndb.Model):
-    name = ndb.StringPropery(required = True)
+    name = ndb.StringProperty(required = True)
     facility = ndb.StringProperty(required = True)
 
 class MainPage(webapp2.RequestHandler):
-    def get(self): #for a get request
-        user = users.get_current_user()
-        if user:
-            #here I'm going to add the code for
-            #the main page when the user is logged in
-            #look up if have acct in query
-            #with account keep going
-            #else self.redirect then redirect to create account
-            self.response.write("You're logged in!")
-        else:
-            login_url = users.create_login_url('/')
-            login_html_element = '<a href="%s">Sign in</a>' % login_url
-            self.response.write('Please log in.<b>' + login_html_element)
+    def get(self):
+
+        #for a get request
         #Step 3: Use the Jinja environment to get our HTML
         template = jinja_env.get_template("templates/main.html")
+        self.response.write(template.render())
+
+class CreateAccount(webapp2.RequestHandler):
+    def get(self): #for a get request
+
+        #Step 3: Use the Jinja environment to get our HTML
+        template = jinja_env.get_template("templates/joinEvent.html")
         self.response.write(template.render())
 
 class JoinEventPage(webapp2.RequestHandler):
