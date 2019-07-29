@@ -6,9 +6,12 @@ threadsafe: true
 handlers:
 - url: /stylesheets
   static_dir: stylesheets
+
 - url: /.*
   script: main.app
 
 libraries:
 - name: jinja2
   version: latest
+- name: webapp2
+  version: "2.5.2"
