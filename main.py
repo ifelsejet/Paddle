@@ -55,7 +55,7 @@ class CreateAccount(webapp2.RequestHandler):
     def get(self): #for a get request
 
         #Step 3: Use the Jinja environment to get our HTML
-        template = jinja_env.get_template("templates/joinEvent.html")
+        template = jinja_env.get_template("templates/createAccount.html")
         self.response.write(template.render())
 
 class JoinEventPage(webapp2.RequestHandler):
@@ -78,7 +78,7 @@ class CreateNewEventPage(webapp2.RequestHandler):
         self.response.write(template.render())
 # the app configuration section
 app = webapp2.WSGIApplication([
-    ('/createaccount', CreateAccount),
+    ('/createAccount', CreateAccount),
     ('/', MainPage), #this maps the root url to the Main Page Handler
     ('/joinEvent' , JoinEventPage),
     ('/about', AboutPage),
