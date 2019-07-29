@@ -34,7 +34,7 @@ class MainPage(webapp2.RequestHandler):
     def get(self):
         #if email is in datastore contue to Main Page w list of joinEvent
         #creting a list that stores all the emails in datastore
-        user_list = User.query().fetch().email()
+        #user_list = User.query().fetch().email()
 
         #creating an if ststment that checks if the email used to \
         #login is already in datastore
