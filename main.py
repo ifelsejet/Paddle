@@ -17,6 +17,14 @@ jinja_env = jinja2.Environment(
 class User(ndb.Model):
     name = ndb.StringProperty(required = True)
     school = ndb.StringPropery(required = True)
+    email = ndb.StringProperty(required = True)
+    phoneNumber = ndb.StringPropery(required = True)
+    #Example : 2023
+    classYear = ndb.IntegerProperty(required = True)
+
+class School(ndb.Model):
+    name = ndb.StringPropery(required = True)
+    facility = ndb.StringProperty(required = True)
 
 
 
