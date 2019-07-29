@@ -1,6 +1,7 @@
 #main.py
 # the import section
 import webapp2
+from google.appengine.api import users
 import logging
 #Step 1: Import Jinja and os
 import jinja2
@@ -13,16 +14,33 @@ from google.appengine.api import users
 jinja_env = jinja2.Environment(
     loader = jinja2.FileSystemLoader(os.path.dirname(__file__))
 )
+
 class User(ndb.Model):
-    name = ndb.StringProperty(required = True)
-    school = ndb.StringPropery(required = True)
+    name = ndb.StringProperty(required=True)
+    school = ndb.StringPropery(required=True)
+    email = ndb.StringProperty(required=True)
+    phoneNumber = ndb.StringPropery(required=True)
+    #Example : 2023
+    classYear = ndb.IntegerProperty(required= True)
 
+class School(ndb.Model):
+    name = ndb.StringPropery(required = True)
+    facility = ndb.StringProperty(required = True)
 
-
-# the handler section
 class MainPage(webapp2.RequestHandler):
     def get(self): #for a get request
-
+        user = users.get_current_user()
+        if user:
+            #here I'm going to add the code for
+            #the main page when the user is logged in
+            #look up if have acct in query
+            #with account keep going
+            #else self.redirect then redirect to create account
+            self.response.write("You're logged in!")
+        else:
+            login_url = users.create_login_url('/')
+            login_html_element = '<a href="%s">Sign in</a>' % login_url
+            self.response.write('Please log in.<b>' + login_html_element)
         #Step 3: Use the Jinja environment to get our HTML
         template = jinja_env.get_template("templates/main.html")
         self.response.write(template.render())
@@ -41,6 +59,7 @@ class AboutPage(webapp2.RequestHandler):
         self.response.write(template.render())
 # the app configuration section
 app = webapp2.WSGIApplication([
+    ('/createaccount', CreateAccount),
     ('/', MainPage), #this maps the root url to the Main Page Handler
     ('/joinEvent' , JoinEventPage),
     ('/about', AboutPage),
