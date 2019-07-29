@@ -6,9 +6,13 @@
   </head>
   <body>
     <center><h1>Create new event</h1></center>
-    <h2>Activity type</h2>
-    <h3>Date</h3>
-    <h4>Time</h4>
+    <h2>Activity type</h2><input type="text" name="activity type" value="">
+    <label for="meeting-time">Choose a time to meet up:</label>
+
+<input type="datetime-local" id="meeting-time"
+       name="meeting-time" value="2018-06-12T19:30"
+       min="2018-06-07T00:00" max="2018-06-14T00:00">
+
     <button type="button" name="Submit">Submit</button>
 
 

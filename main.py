@@ -38,12 +38,12 @@ class MainPage(webapp2.RequestHandler):
 
         #creating an if ststment that checks if the email used to \
         #login is already in datastore
-        # if (login.email() in user_list):
-        #     #the structure of the main page
-        #
-        # #redirect user to make account page
-        # #where the create a user model with their email and extra info
-        # else ()
+        #if (login.email() in user_list):
+            #the structure of the main page
+
+        #redirect user to make account page
+        #where the create a user model with their email and extra info
+        #else ()
 
 
         #for a get request
