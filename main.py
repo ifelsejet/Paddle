@@ -13,13 +13,14 @@ from google.appengine.api import users
 jinja_env = jinja2.Environment(
     loader = jinja2.FileSystemLoader(os.path.dirname(__file__))
 )
+
 class User(ndb.Model):
-    name = ndb.StringProperty(required = True)
-    school = ndb.StringPropery(required = True)
-    email = ndb.StringProperty(required = True)
-    phoneNumber = ndb.StringPropery(required = True)
+    name = ndb.StringProperty(required=True)
+    school = ndb.StringPropery(required=True)
+    email = ndb.StringProperty(required=True)
+    phoneNumber = ndb.StringPropery(required=True)
     #Example : 2023
-    classYear = ndb.IntegerProperty(required = True)
+    classYear = ndb.IntegerProperty(required= True)
 
 class School(ndb.Model):
     name = ndb.StringPropery(required = True)
