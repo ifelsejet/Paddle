@@ -17,14 +17,17 @@ jinja_env = jinja2.Environment(
 
 class User(ndb.Model):
     name = ndb.StringProperty(required=True)
-    school = ndb.StringPropery(required=True)
+    #school = ndb.StringProperty(required=True)
     email = ndb.StringProperty(required=True)
-    phoneNumber = ndb.StringPropery(required=True)
+    #phoneNumber = ndb.StringProperty(required=True)
     #Example : 2023
     classYear = ndb.IntegerProperty(required= True)
 
+    def describe(self):
+        return "%s goes to" % (self.name)
+
 class School(ndb.Model):
-    name = ndb.StringPropery(required = True)
+    name = ndb.StringProperty(required = True)
     facility = ndb.StringProperty(required = True)
 
 class MainPage(webapp2.RequestHandler):
