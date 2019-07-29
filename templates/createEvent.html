@@ -7,14 +7,33 @@
   <body>
     <center><h1>Create new event</h1></center>
     <h2>Activity type</h2>
-    <label for="meeting-time">Choose a time to meet up:</label>
+    <select name="Activity Type">
+      <option value=""></option>
+      <option value="Activity1">Basketball</option>
+      <option value="Activity2">Volleyball</option>
+      <option value="Activity3">PingPong</option>
+      <option value="Activity4">Soccer</option>
+      <option value="Activity5">Ultimate Frisbee</option>
+      <option value="Activity6">Weight Training</option>
+      </select>
+    <h2>Preferred Location</h2>
+      <select name="Location">
+        <option value=""></option>
+        <option value="Location1">Recreation Center</option>
+        <option value="Location2">Gameroom</option>
+        <option value="Location3">Field</option>
+        <option value="Location4">Grass Area</option>
+        <option value="Location5">Weight Room</option>
+    <div>
+      </select>
+      <label for="meeting-time">Select a time and date for the activity:</label>
 
-<input type="datetime-local" id="meeting-time"
+      <input type="datetime-local" id="meeting-time"
        name="meeting-time" value=""
        min="" max="">
 
-    <button type="button" name="Submit">Submit</button>
-
+       <button type="button" name="Submit">Submit</button>
+    </div>
 
   </body>
 </html>
