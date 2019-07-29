@@ -26,8 +26,6 @@ class School(ndb.Model):
     name = ndb.StringPropery(required = True)
     facility = ndb.StringProperty(required = True)
 
-
-
 class MainPage(webapp2.RequestHandler):
     def get(self): #for a get request
         user = users.get_current_user()

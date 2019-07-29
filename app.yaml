@@ -10,7 +10,8 @@ handlers:
   static_dir: images
 - url: /.*
   script: main.app
-
+  login: required
+  
 libraries:
 - name: jinja2
   version: latest
