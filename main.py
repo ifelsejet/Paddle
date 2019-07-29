@@ -6,10 +6,18 @@ import logging
 import jinja2
 import os
 
+from google.appengine.ext import ndb
+from google.appengine.api import users
+
 #Step 2: Set up Jinja environment
 jinja_env = jinja2.Environment(
     loader = jinja2.FileSystemLoader(os.path.dirname(__file__))
 )
+class User(ndb.Model):
+    name = ndb.StringProperty(required = True)
+    school = ndb.StringPropery(required = True)
+
+
 
 # the handler section
 class MainPage(webapp2.RequestHandler):
