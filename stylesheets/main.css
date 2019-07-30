@@ -3,6 +3,6 @@ body {
   background: lightsalmon;
   position: relative;
 }
-ul{
-  list-style: none;
+.demo-list-icon {
+  width: 300px;
 }
