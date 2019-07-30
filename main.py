@@ -19,7 +19,7 @@ jinja_env = jinja2.Environment(
     loader = jinja2.FileSystemLoader(os.path.dirname(__file__))
 )
 
-class User(ndb.Model):
+class Profile(ndb.Model):
     name = ndb.StringProperty(required=True)
     #school = ndb.StringProperty(required=True)
     email = ndb.StringProperty(required=True)
@@ -34,7 +34,7 @@ class School(ndb.Model):
     name = ndb.StringProperty(required = True)
     facility = ndb.StringProperty(required = True)
 
-class MainPage(webapp2.RequestHandler):
+class SignIn_Transition(webapp2.RequestHandler):
     def get(self):
         #Python API Notes
         '''
@@ -58,29 +58,51 @@ class MainPage(webapp2.RequestHandler):
         '''
         #if email is in datastore contue to Main Page w list of joinEvent
         #creting a list that stores all the emails in datastore
-        #user_list = User.query().fetch().email()
+        #user.email() represents the email of the user that just logged in according to
+        #api docs
+        #User.email() represents the email attributes assoiated with User models in datastore
 
+        user = users.get_current_user()
+        signin_link = users.create_login_url('/')
+
+
+        email_address = user.email()
+        email_match_list = Profile.query().filter(Profile.email == email_address).get()
         #creating an if ststment that checks if the email used to \
         #login is already in datastore
-        #if (login.email() in user_list):
+        if email_match_list is True:
+            self.redirect("/main", True)
+            #created a sign out link
             #the structure of the main page
-
         #redirect user to make account page
         #where the create a user model with their email and extra info
-        #else ()
-
-
+        else:
+            self.redirect("/createaccount", True)
         #for a get request
         #Step 3: Use the Jinja environment to get our HTML
-        template = jinja_env.get_template("templates/main.html")
-        self.response.write(template.render())
+            template = jinja_env.get_template("templates/signin_T.html")
+            self.response.write(template.render())
 
-class CreateAccount(webapp2.RequestHandler):
+class Main(webapp2.RequestHandler):
     def get(self): #for a get request
 
         #Step 3: Use the Jinja environment to get our HTML
+        template_vars = {
+        'logout_link' : users.create_logout_url('/')
+        }
+        template = jinja_env.get_template("templates/main.html")
+        self.response.write(template.render(template_vars))
+
+class CreateAccount(webapp2.RequestHandler):
+    def get(self): #for a get request
+        print users.create_logout_url(users.create_login_url('/'))
+        print users.create_login_url('/')
+        template_vars = {
+        'logout_link' : users.create_logout_url(users.create_login_url('/'))
+        }
+        #Step 3: Use the Jinja environment to get our HTML
         template = jinja_env.get_template("templates/createAccount.html")
-        self.response.write(template.render())
+        self.response.write(template.render(template_vars))
 
 class JoinEventPage(webapp2.RequestHandler):
     def get(self): #for a get request
@@ -102,9 +124,10 @@ class CreateNewEventPage(webapp2.RequestHandler):
         self.response.write(template.render())
 # the app configuration section
 app = webapp2.WSGIApplication([
-    ('/createAccount', CreateAccount),
-    ('/', MainPage), #this maps the root url to the Main Page Handler
-    ('/joinEvent' , JoinEventPage),
+    ('/createaccount', CreateAccount),
+    ('/', SignIn_Transition), #this maps the root url to the Main Page Handler
+    ('/main', Main),
+    ('/joinEvent', JoinEventPage),
     ('/about', AboutPage),
     ('/createEvent', CreateNewEventPage)
 

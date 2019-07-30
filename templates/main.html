@@ -3,10 +3,26 @@
   <head>
     <meta charset="utf-8">
     <title>Paddle</title>
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link href="/stylesheets/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   </head>
   <body>
-    <h1>Hello World!</h1>
-    <a href="/createEvent"><button type="button" name="Create New Event">Create New Event!</button></a>
+    <center><h1>Hello User!</h1>
+      <p><a href="{{logout_link}}">sign out</a></p>
+      <h3> Welcome to Paddle</h3>
+      <h6>Current Activities available for you to join</h6>
+      <ul>
+        <li>EVENT 1</li>
+        <li>event 2</li>
+        <li>EVENT 3</li>
+      </ul>
+    <a href="/createEvent">
+      <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+        <i class="material-icons">add</i>
+      </button>
+<!-- </button><button type="button" name="Create New Event">Create New Event!</button></a> -->
     <a href="/joinEvent"><button type="button" name="Join Event">Join Event!</button></a>
     <a href="/about"><button type="button" name="About Page">About</button></a>
     <a href="/createAccount"><button type="button" name="Create an Account">Create an account</button></a>
