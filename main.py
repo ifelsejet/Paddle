@@ -5,10 +5,14 @@ from google.appengine.api import users
 import logging
 #Step 1: Import Jinja and os
 import jinja2
+#import urllib
+#import json
 import os
 
 from google.appengine.ext import ndb
 from google.appengine.api import users
+#from google.appengine.api import urlfetch
+
 
 #Step 2: Set up Jinja environment
 jinja_env = jinja2.Environment(
@@ -32,6 +36,26 @@ class School(ndb.Model):
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
+        #Python API Notes
+        '''
+        Set up my key (in GCP console) and url
+        api_key = 'something1234567'
+        params = {'q': 'Harry Potter',
+        'api_key': api_key}
+        base_url = 'url'
+        full_url = base_url + '?' + urllib.urlencode(params)
+
+        Fetch the url (service name [in GCP])
+        response  = urlfetch.fetch(full_url).content
+
+
+        Get the JSON response and convert to dictionary
+        response_dictonary = json.loads(response)
+
+        template_vars = {
+        'books': books_dictionary['items'],
+        }
+        '''
         #if email is in datastore contue to Main Page w list of joinEvent
         #creting a list that stores all the emails in datastore
         #user_list = User.query().fetch().email()
