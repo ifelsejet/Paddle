@@ -16,7 +16,10 @@ flex-wrap: wrap;
 
 .bioimgs{
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-direction:row;
   justify-content: space-between;
+  flex-wrap: wrap;
+  border: solid;
+  border-radius: 5px;
+
 }
