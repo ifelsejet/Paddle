@@ -21,7 +21,7 @@ class Profile(ndb.Model):
     email = ndb.StringProperty(required=True)
     #phoneNumber = ndb.StringProperty(required=True)
     #Example : 2023
-    classYear = ndb.IntegerProperty(required= True)
+    classYear = ndb.StringProperty(required= True)
 
     def describe(self):
         return "%s goes to" % (self.name)
@@ -29,6 +29,32 @@ class Profile(ndb.Model):
 class School(ndb.Model):
     name = ndb.StringProperty(required = True)
     facility = ndb.StringProperty(required = True)
+
+class CreateAccount(webapp2.RequestHandler):
+    def get(self): #for a get request
+        template_vars = {
+        'logout_link' : users.create_logout_url(users.create_login_url('/'))
+        }
+        #Step 3: Use the Jinja environment to get our HTML
+        template = jinja_env.get_template("templates/createAccount.html")
+        self.response.write(template.render(template_vars))
+    def post(self):
+        #self.req.get lets us get data input
+        #however we get user input from post rather than url query
+        Name = self.request.get("Name")
+        Email = self.request.get("Email")
+        classYear = self.request.get("classYear")
+
+        Profile(
+            name = Name,
+            email = users.get_current_user().email(),
+            classYear = classYear,
+        ).put()
+
+        self.redirect("/main", True)
+
+        # template = jinja_env.get_template("templates/createAccount.html")
+        # self.response.write(template.render(template_vars))
 
 class SignIn_Transition(webapp2.RequestHandler):
     def get(self):
@@ -41,12 +67,11 @@ class SignIn_Transition(webapp2.RequestHandler):
         user = users.get_current_user()
         signin_link = users.create_login_url('/')
 
-
         email_address = user.email()
-        email_match_list = Profile.query().filter(Profile.email == email_address).get()
-        #creating an if ststment that checks if the email used to \
+        email_match_value = Profile.query().filter(Profile.email == email_address).get()
+        #creating an if ststment that checks if the email used to \\
         #login is already in datastore
-        if email_match_list is True:
+        if email_match_value:
             self.redirect("/main", True)
             #created a sign out link
             #the structure of the main page
@@ -54,10 +79,6 @@ class SignIn_Transition(webapp2.RequestHandler):
         #where the create a user model with their email and extra info
         else:
             self.redirect("/createaccount", True)
-        #for a get request
-        #Step 3: Use the Jinja environment to get our HTML
-            template = jinja_env.get_template("templates/signin_T.html")
-            self.response.write(template.render())
 
 class Main(webapp2.RequestHandler):
     def get(self): #for a get request
@@ -69,29 +90,20 @@ class Main(webapp2.RequestHandler):
         template = jinja_env.get_template("templates/main.html")
         self.response.write(template.render(template_vars))
 
-class CreateAccount(webapp2.RequestHandler):
-    def get(self): #for a get request
-        print users.create_logout_url(users.create_login_url('/'))
-        print users.create_login_url('/')
-        template_vars = {
-        'logout_link' : users.create_logout_url(users.create_login_url('/'))
-        }
-        #Step 3: Use the Jinja environment to get our HTML
-        template = jinja_env.get_template("templates/createAccount.html")
-        self.response.write(template.render(template_vars))
 
 class JoinEventPage(webapp2.RequestHandler):
     def get(self): #for a get request
-
         #Step 3: Use the Jinja environment to get our HTML
         template = jinja_env.get_template("templates/joinEvent.html")
         self.response.write(template.render())
+
 class AboutPage(webapp2.RequestHandler):
     def get(self): #for a get request
 
         #Step 3: Use the Jinja environment to get our HTML
         template = jinja_env.get_template("templates/about.html")
         self.response.write(template.render())
+
 class CreateNewEventPage(webapp2.RequestHandler):
     def get(self): #for a get request
 
