@@ -1,0 +1,22 @@
+body {
+  background-color: lightblue;
+}
+
+#title {
+  font-style: bold;
+  text-decoration: underline;
+  text-align: center
+}
+
+.project {
+/*text-align: center;*/
+display: flex;
+flex-wrap: wrap;
+}
+
+.bioimgs{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
