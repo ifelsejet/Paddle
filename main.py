@@ -87,7 +87,6 @@ class SignIn_Transition(webapp2.RequestHandler):
         #user.email() represents the email of the user that just logged in according to
         #api docs
         #User.email() represents the email attributes assoiated with User models in datastore
-
         user = users.get_current_user()
         signin_link = users.create_login_url('/')
 
