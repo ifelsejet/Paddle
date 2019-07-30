@@ -1,3 +1,19 @@
 body {
   background-color: pink;
 }
+
+#title {
+  font-style: bold;
+  text-decoration: underline;
+  text-align: center
+}
+
+.project {
+text-align: center;
+}
+
+.bio{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
