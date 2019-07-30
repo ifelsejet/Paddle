@@ -18,6 +18,11 @@ from google.appengine.api import users
 jinja_env = jinja2.Environment(
     loader = jinja2.FileSystemLoader(os.path.dirname(__file__))
 )
+class Event(ndb.Model):
+    activity = ndb.StringProperty(required = True)
+    location = ndb.StringProperty(required = True)
+    timedate = ndb.DateTimeProperty(required = True)
+    creator = ndb.StringProperty(required = True)
 
 class Profile(ndb.Model):
     name = ndb.StringProperty(required=True)
@@ -134,10 +139,23 @@ class FlexBoxPage(webapp2.RequestHandler):
         self.response.write(template.render())
 class CreateNewEventPage(webapp2.RequestHandler):
     def get(self): #for a get request
-
         #Step 3: Use the Jinja environment to get our HTML
         template = jinja_env.get_template("templates/createEvent.html")
         self.response.write(template.render())
+    def post(self):
+        activity = self.request.get("activity")
+        location = self.request.get("location")
+        meetingtime = self.request.get("meetingtime")
+
+        Event(
+            activity = activity,
+            location = location,
+            #parse meetingtime input string and convert top python datetime obj
+            timedate = datetime.strptime(meetingtime,"%Y-%m-%dT%H:%M"),
+            creator = users.get_current_user().name()
+        ).put()
+
+        self.redirect("/main",True)
 # the app configuration section
 app = webapp2.WSGIApplication([
     ('/createaccount', CreateAccount),
