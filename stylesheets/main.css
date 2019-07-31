@@ -14,3 +14,6 @@ ul{
 #logo{
   width:100%;
 }
+.mdl-layout__header-row .mdl-navigation__link {
+  color: black;
+}
