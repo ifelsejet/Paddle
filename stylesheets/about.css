@@ -8,6 +8,9 @@
      your background is light. */
   color: Black;
 }
+.mdl-layout__header-row .mdl-navigation__link {
+  color: black;
+}
 #grouppic{
   width: 100%;
 }
