@@ -16,3 +16,6 @@ mdl-layout__header-row .mdl-navigation__link {
      your background is light. */
   color: black;
 }
+.mdl-layout__header-row .mdl-navigation__link {
+  color: black;
+}

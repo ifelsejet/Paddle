@@ -1,11 +1,11 @@
+#grouppic{
+  width: 100%;
+}
 .demo-layout-transparent .mdl-layout__header,
 .demo-layout-transparent .mdl-layout__drawer-button {
   /* This background is dark, so we set text to white. Use 87% black instead if
      your background is light. */
   color: Black;
-}
-#group_pic{
-  width: 100%;
 }
 #title {
   font-style: bold;
@@ -51,4 +51,7 @@ border-radius: 5px;
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
+}
+.mdl-layout__header-row .mdl-navigation__link {
+  color: black;
 }
