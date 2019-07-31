@@ -3,22 +3,22 @@
   <head>
     <meta charset="utf-8">
     <title>Paddle</title>
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
     <link href="../stylesheets/main.css" rel="stylesheet">
     <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
     <!-- Material Design icon font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   </head>
   <body>
     <div class="demo-layout-transparent mdl-layout mdl-js-layout">
-     <header class="mdl-layout__header mdl-layout__header--transparent">
+     <header class="mdl-layout__header mdl-layout__header--transparent dash">
        <div class="mdl-layout__header-row">
          <!-- Title -->
          <span class="mdl-layout-title">Main Page</span>
          <!-- Add spacer, to align navigation to the right -->
          <div class="mdl-layout-spacer"></div>
          <nav class="mdl-navigation">
-           <a class="mdl-navigation__link" href="{{logout_link}}">Sign Out</a> <!--this doesn't work as intended -->
+           <a class="mdl-navigation__link dash" href="{{logout_link}}">Sign Out</a> <!--this doesn't work as intended -->
          </nav>
        </div>
      </header>
@@ -34,14 +34,13 @@
      <main class="mdl-layout__content">
        <img id = "grouppic" src="../images/PAddle_Logo21.svg">
      <div>
-    <center><h1>Hello User!</h1>
-      <h3> Welcome to Paddle</h3>
-      <h6>Current Activities available for you to join</h6>
+      <center><h3>Current Activities available for you to join</h3>
       <ul>
         <li>EVENT 1</li>
         <li>event 2</li>
         <li>EVENT 3</li>
       </ul>
+    </center>
     <div>
 
 
