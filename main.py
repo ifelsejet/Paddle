@@ -101,7 +101,7 @@ class CreateNewEventPage(webapp2.RequestHandler):
             location = location,
             #parse meetingtime input string and convert top python datetime obj
 
-            timedate = temp_tim_obj,
+            timeDate = temp_tim_obj,
             #extracting the name attribute from the right profile and
             #assigning it to the creator attribute of the model
             creator = email_match_value.name
