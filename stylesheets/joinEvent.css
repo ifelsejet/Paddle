@@ -10,10 +10,13 @@ body {
      your background is light. */
   color: black;
 }
-#grouppic{
+#logo{
   width: 100%;
 
 }
 button{
   padding-left: 100vh;
+}
+.mdl-layout__header-row .mdl-navigation__link {
+  color: black;
 }

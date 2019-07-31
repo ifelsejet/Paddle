@@ -3,13 +3,14 @@
   <head>
     <meta charset="utf-8">
     <title> Create Event Page</title>
-    <link href="../stylesheets/createevent.css" rel="stylesheet">
-  </head>
-  <body>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link href="../stylesheets/createevent.css" rel="stylesheet">
   </head>
+  <body>
+  </head>
+
   <body>
     <div class="demo-layout-transparent mdl-layout mdl-js-layout">
      <header class="mdl-layout__header mdl-layout__header--transparent">
@@ -19,12 +20,9 @@
          <!-- Add spacer, to align navigation to the right -->
          <div class="mdl-layout-spacer"></div>
          <!-- Navigation -->
-         <!-- <nav class="mdl-navigation">
-           <a class="mdl-navigation__link" href="/">Main Page</a>
-           <a class="mdl-navigation__link" href="/joinEvent">Join Event</a>
-           <a class="mdl-navigation__link" href="/createEvent">Create Event</a>
-           <a class="mdl-navigation__link" href="/about">About Developers</a>
-         </nav> -->
+         <nav class="mdl-navigation">
+           <a class="mdl-navigation__link dash" href="{{logout_link}}">Sign Out</a> <!--this doesn't work as intended -->
+         </nav>
        </div>
      </header>
      <div class="mdl-layout__drawer">
@@ -60,19 +58,18 @@
            <option value="Weight Room">Weight Room</option>
          </select>
 
-       <div>
-         <label for="meeting-time">Select a time and date for the activity:</label>
+          <div>
+            <label for="meeting-time">Select a time and date for the activity:</label>
 
-         <input type="datetime-local" id="meetingtime"
-          name="meetingtime" value=""
-          min="" max="">
-          <input type="submit" name="submit" value="Submit">
-       </div>
-     </form>
-     </main>
-   </div>
+            <input type="datetime-local" id="meetingtime" name="meetingtime" value="" min="" max="">
+            <input type="submit" name="submit" value="Submit">
+          </div>
+        </form>
+      </main>
+    </div>
 
 
 
   </body>
+
 </html>
