@@ -73,12 +73,13 @@ class CreateNewEventPage(webapp2.RequestHandler):
         email_address = users.get_current_user().email()
         #getting the right datastore Profile model to match with that email
         email_match_value = Profile.query().filter(Profile.email == email_address).get()
-
+        temp_tim_obj = datetime.datetime.strptime(meetingtime,"%Y-%m-%dT%H:%M")
         Event(
             activity = activity,
             location = location,
             #parse meetingtime input string and convert top python datetime obj
-            timeDate = datetime.datetime.strptime(meetingtime,"%Y-%m-%dT%H:%M"),
+
+            timedate = temp_tim_obj,
             #extracting the name attribute from the right profile and
             #assigning it to the creator attribute of the model
             creator = email_match_value.name
@@ -92,7 +93,7 @@ class JoinEventPage(webapp2.RequestHandler):
         self.response.write(template.render())
 
 class Main(webapp2.RequestHandler):
-        def get(self): 
+        def get(self):
             template_vars = {
             'logout_link' : users.create_logout_url('/')
             }
