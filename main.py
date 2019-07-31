@@ -8,6 +8,9 @@ import datetime
 from google.appengine.ext import ndb
 from google.appengine.api import users
 
+
+
+#Step 2: Set up Jinja environment
 jinja_env = jinja2.Environment(
     loader = jinja2.FileSystemLoader(os.path.dirname(__file__))
 )
@@ -59,6 +62,25 @@ class CreateAccount(webapp2.RequestHandler):
 
         self.redirect("/main", True)
 
+class Main(webapp2.RequestHandler):
+    # need to do queryof Event datastore
+    def get(self): #for a get request
+        #figure out the right filtering
+        #filter for each attribu
+        event_query_list = Event.query().fetch()
+        print event_query_list
+        #Step 3: Use the Jinja environment to get our HTML
+        # for event in event_query_list :
+        #
+        #     event_query_list.timedate = datetime.datetime.strftime(event_query_list.timedate,"%a-%b-%d,%I %M %P"),
+
+        template_vars = {
+        'logout_link' : users.create_logout_url('/'),
+        'events': event_query_list
+        }
+        template = jinja_env.get_template("templates/main.html")
+        self.response.write(template.render(template_vars))
+
 class CreateNewEventPage(webapp2.RequestHandler):
     def get(self):
         template = jinja_env.get_template("templates/createEvent.html")
@@ -79,7 +101,7 @@ class CreateNewEventPage(webapp2.RequestHandler):
             location = location,
             #parse meetingtime input string and convert top python datetime obj
 
-            timedate = temp_tim_obj,
+            timeDate = temp_tim_obj,
             #extracting the name attribute from the right profile and
             #assigning it to the creator attribute of the model
             creator = email_match_value.name
@@ -88,17 +110,17 @@ class CreateNewEventPage(webapp2.RequestHandler):
         self.redirect("/main",True)
 
 class JoinEventPage(webapp2.RequestHandler):
+    '''
+    So, whenever someone clicks the join button, we want to update the number
+    of people in the event party by 1.
+    Additionally, we want to also list the user's name (ex. John Doe) in the list
+    of people attending.
+    Finally, once the user has joined an event, we want to send an alert to show
+    that they successfuly joined a certain event
+    '''
     def get(self):
         template = jinja_env.get_template("templates/joinEvent.html")
         self.response.write(template.render())
-
-class Main(webapp2.RequestHandler):
-        def get(self):
-            template_vars = {
-            'logout_link' : users.create_logout_url('/')
-            }
-            template = jinja_env.get_template("templates/main.html")
-            self.response.write(template.render(template_vars))
 
 class SignIn_Transition(webapp2.RequestHandler):
     def get(self):
