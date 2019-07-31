@@ -4,9 +4,6 @@ body {
 ul{
   list-style: none;
 }
-/* .demo-layout-transparent {
-  background: url() center / cover;
-} */
 .demo-layout-transparent .mdl-layout__header,
 .demo-layout-transparent .mdl-layout__drawer-button,
 .dash {
@@ -14,6 +11,6 @@ ul{
      your background is light. */
   color: black;
 }
-#grouppic{
+#logo{
   width:100%;
 }

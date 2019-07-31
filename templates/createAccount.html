@@ -1,33 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Create Account</title>
-  </head>
-  <body>
-    <p><a href="{{logout_link}}">sign out</a></p>
-    <h2>Create an Account!</h2>
-      <form action="/createaccount" method="post">
-        <label for="Name">Name</label>
-        <input type="text" placeholder ="Enter your first and last name" name="Name" required>
-        <br>
-        <!-- if we have time make this a drop down <menu>
-          <select name="People Attending">
-            <option value="Person 1">Person 1</option>
-            <option value="Person 2">Person 2</option>
-            <option value="Person 3">Person 3</option>
-            <option value="Person 4">Person 4</option>
-            <option value="Person 5">Person 5</option> -->
-        <label for="classYear">Class Year (Freshman, Sophmore, Junior, or Senior)</label>
-        <select name="classYear" required>
-          <option value=""></option>
-          <option value="freshman">Freshman</option>
-          <option value="sophmore">Sophmore</option>
-          <option value="junior">Junior</option>
-          <option value="senior">Senior</option>
-        </select>
-        <br>
-        <input type="submit" name="submit" value="Create Account!">
-      </form>
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <title>Create Account</title>
+</head>
+
+<body>
+  <p><a href="{{logout_link}}">sign out</a></p>
+  <h2>Create an Account!</h2>
+  <form action="/createaccount" method="post">
+    <label for="Name">Name</label>
+    <input type="text" placeholder="Enter your first and last name" name="Name" required>
+    <br>
+    <label for="classYear">Class Year (Freshman, Sophmore, Junior, or Senior)</label>
+    <select name="classYear" required>
+      <option value=""></option>
+      <option value="freshman">Freshman</option>
+      <option value="sophmore">Sophmore</option>
+      <option value="junior">Junior</option>
+      <option value="senior">Senior</option>
+    </select>
+    <br>
+    <input type="submit" name="submit" value="Create Account!">
+  </form>
+</body>
+
 </html>

@@ -2,15 +2,13 @@ h2{
   font-size: 20px;
   font-family: monospace;
 }
-.demo-layout-transparent {
-  /* background: url() center / cover; */
-}
+
 .demo-layout-transparent .mdl-layout__header,
 .demo-layout-transparent .mdl-layout__drawer-button {
   /* This background is dark, so we set text to white. Use 87% black instead if
      your background is light. */
   color: black;
 }
-#grouppic{
+#logo{
   width:100%;
 }
