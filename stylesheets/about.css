@@ -1,17 +1,10 @@
-.demo-layout-transparent {
-  /* background: url('../images/IMG_6125.jpg') center / cover; */
-  /* margin-top: 100vh; */
-}
 .demo-layout-transparent .mdl-layout__header,
 .demo-layout-transparent .mdl-layout__drawer-button {
   /* This background is dark, so we set text to white. Use 87% black instead if
      your background is light. */
   color: Black;
 }
-.mdl-layout__header-row .mdl-navigation__link {
-  color: black;
-}
-#grouppic{
+#group_pic{
   width: 100%;
 }
 #title {
