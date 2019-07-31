@@ -14,8 +14,9 @@
 }
 #github {
   text-align: center
-
-
+}
+.mdl-layout__header-row .mdl-navigation__link {
+    color: black;
 }
 ul {
   text-align: left;
@@ -51,7 +52,4 @@ border-radius: 5px;
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-}
-.mdl-layout__header-row .mdl-navigation__link {
-  color: black;
 }
