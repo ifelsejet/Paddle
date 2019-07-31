@@ -3,17 +3,13 @@
 import webapp2
 from google.appengine.api import users
 import logging
-#Step 1: Import Jinja and os
 import jinja2
-#import urllib
-#import json
 import os
 import datetime
 
 from google.appengine.ext import ndb
 from google.appengine.api import users
 
-#from google.appengine.api import urlfetch
 
 
 #Step 2: Set up Jinja environment
@@ -29,14 +25,8 @@ class Event(ndb.Model):
 
 class Profile(ndb.Model):
     name = ndb.StringProperty(required=True)
-    #school = ndb.StringProperty(required=True)
     email = ndb.StringProperty(required=True)
-    #phoneNumber = ndb.StringProperty(required=True)
-    #Example : 2023
     classYear = ndb.StringProperty(required= True)
-
-    def describe(self):
-        return "%s goes to" % (self.name)
 
 class School(ndb.Model):
     name = ndb.StringProperty(required = True)
@@ -65,9 +55,6 @@ class CreateAccount(webapp2.RequestHandler):
 
         self.redirect("/main", True)
 
-        # template = jinja_env.get_template("templates/createAccount.html")
-        # self.response.write(template.render(template_vars))
-
 class SignIn_Transition(webapp2.RequestHandler):
     def get(self):
         #Python API Notes
@@ -94,13 +81,13 @@ class SignIn_Transition(webapp2.RequestHandler):
         #creting a list that stores all the emails in datastore
         #user.email() represents the email of the user that just logged in according to
         #api docs
-        #User.email() represents the email attributes assoiated with User models in datastore
+        #Profile.email() represents the email attributes assoiated with User models in datastore
         user = users.get_current_user()
         signin_link = users.create_login_url('/')
 
         email_address = user.email()
         email_match_value = Profile.query().filter(Profile.email == email_address).get()
-        #creating an if ststment that checks if the email used to \\
+        #creating an if statment that checks if the email used to \\
         #login is already in datastore
         if email_match_value:
             self.redirect("/main", True)
@@ -112,11 +99,20 @@ class SignIn_Transition(webapp2.RequestHandler):
             self.redirect("/createaccount", True)
 
 class Main(webapp2.RequestHandler):
+    # need to do queryof Event datastore
     def get(self): #for a get request
-
+        #figure out the right filtering
+        #filter for each attribu
+        event_query_list = Event.query().fetch()
+        print event_query_list
         #Step 3: Use the Jinja environment to get our HTML
+        # for event in event_query_list :
+        #
+        #     event_query_list.timedate = datetime.datetime.strftime(event_query_list.timedate,"%a-%b-%d,%I %M %P"),
+
         template_vars = {
-        'logout_link' : users.create_logout_url('/')
+        'logout_link' : users.create_logout_url('/'),
+        'events': event_query_list
         }
         template = jinja_env.get_template("templates/main.html")
         self.response.write(template.render(template_vars))
@@ -130,16 +126,16 @@ class JoinEventPage(webapp2.RequestHandler):
 
 class AboutPage(webapp2.RequestHandler):
     def get(self): #for a get request
-
         #Step 3: Use the Jinja environment to get our HTML
         template = jinja_env.get_template("templates/about.html")
         self.response.write(template.render())
+
 class FlexBoxPage(webapp2.RequestHandler):
     def get(self): #for a get request
-
         #Step 3: Use the Jinja environment to get our HTML
         template = jinja_env.get_template("templates/flexboxTest.html")
         self.response.write(template.render())
+
 class CreateNewEventPage(webapp2.RequestHandler):
     def get(self): #for a get request
         #Step 3: Use the Jinja environment to get our HTML
@@ -154,12 +150,13 @@ class CreateNewEventPage(webapp2.RequestHandler):
         email_address = users.get_current_user().email()
         #getting the right datastore Profile model to match with that email
         email_match_value = Profile.query().filter(Profile.email == email_address).get()
-
+        temp_tim_obj = datetime.datetime.strptime(meetingtime,"%Y-%m-%dT%H:%M")
         Event(
             activity = activity,
             location = location,
             #parse meetingtime input string and convert top python datetime obj
-            timedate = datetime.datetime.strptime(meetingtime,"%Y-%m-%dT%H:%M"),
+
+            timedate = temp_tim_obj,
             #extracting the name attribute from the right profile and
             #assigning it to the creator attribute of the model
             creator = email_match_value.name

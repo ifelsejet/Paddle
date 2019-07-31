@@ -34,13 +34,23 @@
      <main class="mdl-layout__content">
        <img id = "grouppic" src="../images/PAddle_Logo21.svg">
      <div>
-    <center><h1>Hello User!</h1>
-      <h3> Welcome to Paddle</h3>
-      <h6>Current Activities available for you to join</h6>
+    <center>
+      <h1>Activities:</h1>
       <ul>
-        <li>EVENT 1</li>
-        <li>event 2</li>
-        <li>EVENT 3</li>
+        {% for event in events %}
+
+        <li>
+          <!-- <a href="/joinEvent"> -->
+            {{event.activity}}
+          <br>
+            {{event.timedate.strftime("%a, %b %d, @ %I:%M %p")}}
+          <br>
+            location: {{event.location}}  by: {{event.creator}} attendies: {{event.attendies}}
+          <br>
+          <br>
+          <!-- </a> -->
+        </li>
+        {% endfor %}
       </ul>
     <div>
 
