@@ -8,9 +8,11 @@ import jinja2
 #import urllib
 #import json
 import os
+import datetime
 
 from google.appengine.ext import ndb
 from google.appengine.api import users
+
 #from google.appengine.api import urlfetch
 
 
@@ -23,6 +25,7 @@ class Event(ndb.Model):
     location = ndb.StringProperty(required = True)
     timedate = ndb.DateTimeProperty(required = True)
     creator = ndb.StringProperty(required = True)
+    attendies = ndb.IntegerProperty(required = True, default = 1)
 
 class Profile(ndb.Model):
     name = ndb.StringProperty(required=True)
@@ -147,12 +150,19 @@ class CreateNewEventPage(webapp2.RequestHandler):
         location = self.request.get("location")
         meetingtime = self.request.get("meetingtime")
 
+        #getting email address of logged in user
+        email_address = users.get_current_user().email()
+        #getting the right datastore Profile model to match with that email
+        email_match_value = Profile.query().filter(Profile.email == email_address).get()
+
         Event(
             activity = activity,
             location = location,
             #parse meetingtime input string and convert top python datetime obj
-            timedate = datetime.strptime(meetingtime,"%Y-%m-%dT%H:%M"),
-            creator = users.get_current_user().name()
+            timedate = datetime.datetime.strptime(meetingtime,"%Y-%m-%dT%H:%M"),
+            #extracting the name attribute from the right profile and
+            #assigning it to the creator attribute of the model
+            creator = email_match_value.name
         ).put()
 
         self.redirect("/main",True)

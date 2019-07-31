@@ -39,6 +39,7 @@
      <main class="mdl-layout__content">
        <img id = "grouppic" src="../images/IMG_6125.jpg">
        <center><h1>Create new event</h1></center>
+       <form action="/createEvent" method="post">
        <h2>Activity type</h2>
        <select name="Activity Type">
          <option value=""></option>
@@ -57,16 +58,17 @@
            <option value="Location3">Field</option>
            <option value="Location4">Grass Area</option>
            <option value="Location5">Weight Room</option>
-       <div>
          </select>
+
+       <div>
          <label for="meeting-time">Select a time and date for the activity:</label>
 
-         <input type="datetime-local" id="meeting-time"
-          name="meeting-time" value=""
+         <input type="datetime-local" id="meetingtime"
+          name="meetingtime" value=""
           min="" max="">
-
-          <button type="button" name="Submit">Submit</button>
+          <input type="submit" name="submit" value="Submit">
        </div>
+     </form>
      </main>
    </div>
 
