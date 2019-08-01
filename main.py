@@ -182,6 +182,11 @@ class SignIn_Transition(webapp2.RequestHandler):
         else:
             self.redirect("/createaccount", True)
 
+class GCalendar(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_env.get_template("templates/gcalendar.html")
+        self.response.write(template.render())
+
 # the app configuration section
 app = webapp2.WSGIApplication([
     ('/createaccount', CreateAccount),
@@ -190,5 +195,6 @@ app = webapp2.WSGIApplication([
     ('/joinEvent', JoinEventPage),
     ('/about', AboutPage),
     ('/createEvent', CreateNewEventPage),
+    ('/calendar', GCalendar),
 
 ], debug=True)
