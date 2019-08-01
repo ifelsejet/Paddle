@@ -4,11 +4,12 @@ import logging
 import jinja2
 import os
 import datetime
+import random
 
 from google.appengine.ext import ndb
 from google.appengine.api import users
 
-
+id_num = 0
 
 #Step 2: Set up Jinja environment
 jinja_env = jinja2.Environment(
@@ -22,6 +23,7 @@ class Event(ndb.Model):
     timeDate = ndb.DateTimeProperty(required = True)
     creator = ndb.StringProperty(required = True)
     attendies = ndb.IntegerProperty(required = True, default = 1)
+    id = ndb.StringProperty(required = True)
 
 class Profile(ndb.Model):
     name = ndb.StringProperty(required=True)
@@ -67,7 +69,7 @@ class Main(webapp2.RequestHandler):
     def get(self): #for a get request
         #figure out the right filtering
         #filter for each attribu
-        event_query_list = Event.query().fetch()
+        event_query_list = Event.query().order(Event.timeDate).fetch()
         print event_query_list
         #Step 3: Use the Jinja environment to get our HTML
         # for event in event_query_list :
@@ -90,7 +92,8 @@ class CreateNewEventPage(webapp2.RequestHandler):
         activity = self.request.get("activity")
         location = self.request.get("location")
         meetingtime = self.request.get("meetingtime")
-
+        global id_num
+        id_num = id_num + 1
         #getting email address of logged in user
         email_address = users.get_current_user().email()
         #getting the right datastore Profile model to match with that email
@@ -100,7 +103,7 @@ class CreateNewEventPage(webapp2.RequestHandler):
             activity = activity,
             location = location,
             #parse meetingtime input string and convert top python datetime obj
-
+            id = str(id_num),
             timeDate = temp_tim_obj,
             #extracting the name attribute from the right profile and
             #assigning it to the creator attribute of the model
@@ -118,9 +121,18 @@ class JoinEventPage(webapp2.RequestHandler):
     Finally, once the user has joined an event, we want to send an alert to show
     that they successfuly joined a certain event
     '''
+
     def get(self):
+        # passing in event clicked variable which holds event specific id and assigninging it variable in python
+        event_specific_id = self.request.get("eventclicked")
+        # going through id's in datastore and matching it with the id we're looking for, then storing that event in event list
+        event_list = Event.query().filter(Event.id == event_specific_id).fetch()
+        template_vars = {
+        #this is the id they clicked
+        "event" : event_list[0]
+        }
         template = jinja_env.get_template("templates/joinEvent.html")
-        self.response.write(template.render())
+        self.response.write(template.render(template_vars))
 
 class SignIn_Transition(webapp2.RequestHandler):
     def get(self):

@@ -39,9 +39,9 @@
       <h1>Activities:</h1>
       <ul>
         {% for event in events %}
-
+        <!-- after question mark assigning specific id to event clicked variable -->
+        <a href="/joinEvent?eventclicked={{event.id}}">
         <li>
-
             {{event.activity}}
           <br>
             {{event.timeDate.strftime("%a, %b %d, @ %I:%M %p")}}
@@ -50,6 +50,7 @@
           <br>
           <br>
         </li>
+        </a>
         {% endfor %}
       </ul>
     <div>

@@ -36,10 +36,11 @@
      </div>
   <main class="mdl-layout__content">
     <img id = "grouppic" src="../images/PAddle_Logo21.svg">
-    <h1>Join an Event!</h1>
-    <h2>Time of the activity:</h2>
-    <h3>ocation:</h3>
-    <h4>People Attending:</h4>
+    <h1>Join Event!</h1>
+    <h2>Activity: {{event.activity}}</h2>
+    <h2>Time: {{event.timeDate.strftime("%a, %b %d, @ %I:%M %p")}}</h2>
+    <h3>Location: {{event.location}}</h3>
+    <h4>Attendies: {{event.attendies}}</h4>
     <ul class="demo-list-icon mdl-list">
      <li class="mdl-list__item">
        <span class="mdl-list__item-primary-content">
