@@ -45,7 +45,8 @@
           <br>
             {{event.timeDate.strftime("%a, %b %d, @ %I:%M %p")}}
           <br>
-            location: {{event.location}}  by: {{event.creator}} attendies: {{event.attendies}}
+            location: {{event.location}}  by: {{event.creator}} attendies:
+             {{event.attendies | length}}
           <br>
           <br>
         </li>

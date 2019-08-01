@@ -39,31 +39,15 @@
     <h2>Activity: {{event.activity}}</h2>
     <h2>Time: {{event.timeDate.strftime("%a, %b %d, @ %I:%M %p")}}</h2>
     <h3>Location: {{event.location}}</h3>
-    <h4>Attendies: {{event.attendies}}</h4>
-    <ul class="demo-list-icon mdl-list">
-     <li class="mdl-list__item">
-       <span class="mdl-list__item-primary-content">
-       <i class="material-icons mdl-list__item-icon">person</i>
-       Bryan Cranston
-   </span>
-     </li>
-     <li class="mdl-list__item">
-       <span class="mdl-list__item-primary-content">
-       <i class="material-icons mdl-list__item-icon">person</i>
-       Aaron Paul
-     </span>
-     </li>
-     <li class="mdl-list__item">
-       <span class="mdl-list__item-primary-content">
-       <i class="material-icons mdl-list__item-icon">person</i>
-       Bob Odenkirk
-     </span>
-     </li>
-   </ul>
-    </select>
+    <h4>Attendies:{% for attendi in event.attendies %}
+     {{attendi.get().name}}
+    {% endfor %}</h4>
+
     <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+    <a href="/main"><button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
       Join the event!
     </button>
+
   </main>
   </body>
 </html>
