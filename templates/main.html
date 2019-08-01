@@ -36,7 +36,7 @@
      <div>
     <center>
       <h1>Activities:</h1>
-      <ul>
+      <ul id = "events">
         {% for event in events %}
         <!-- after question mark assigning specific id to event clicked variable -->
         <a href="/joinEvent?eventclicked={{event.key.urlsafe()}}">
