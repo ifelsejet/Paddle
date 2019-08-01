@@ -27,7 +27,11 @@ ul {
 display: flex;
 flex-wrap: wrap;
 }
-
+p{
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-bottom: 20px:
+}
 .bioimgs{
   display: inline-flex;
   flex-direction: column;
@@ -44,8 +48,6 @@ flex-wrap: wrap;
 
 .biotext{
 display: block;
-border: solid red;
-border-radius: 5px;
 }
 
 .allbios{
