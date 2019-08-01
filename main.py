@@ -8,13 +8,16 @@ import datetime
 from google.appengine.ext import ndb
 from google.appengine.api import users
 
-id_num = 0
+
 
 #Step 2: Set up Jinja environment
 jinja_env = jinja2.Environment(
     loader = jinja2.FileSystemLoader(os.path.dirname(__file__))
 )
 # MODELS
+
+def joinEfxn():
+    print "Hello"
 
 class Profile(ndb.Model):
     name = ndb.StringProperty(required=True)
@@ -27,8 +30,6 @@ class Event(ndb.Model):
     timeDate = ndb.DateTimeProperty(required = True)
     creator = ndb.StringProperty(required = True)
     attendies = ndb.KeyProperty(kind = Profile, repeated = True)
-    id = ndb.StringProperty(required = True)
-
 
 class School(ndb.Model):
     name = ndb.StringProperty(required = True)
@@ -65,22 +66,38 @@ class CreateAccount(webapp2.RequestHandler):
         self.redirect("/main", True)
 
 class Main(webapp2.RequestHandler):
-    # need to do queryof Event datastore
-    def get(self): #for a get request
-        #figure out the right filtering
+    def get(self):
         #filter for each attribute
         event_query_list = Event.query().order(Event.timeDate).fetch()
         #Step 3: Use the Jinja environment to get our HTML
-        # for event in event_query_list :
-        #
-        #     event_query_list.timedate = datetime.datetime.strftime(event_query_list.timedate,"%a-%b-%d,%I %M %P"),
-
+        for attendi in event_query_list[1].attendies:
+            print "AAAYY" +attendi.get().name
         template_vars = {
         'logout_link' : users.create_logout_url('/'),
         'events': event_query_list
         }
         template = jinja_env.get_template("templates/main.html")
         self.response.write(template.render(template_vars))
+    def post(self):
+
+        eventkey = self.request.get('eventkey')
+        event = ndb.Key(urlsafe=eventkey).get()
+
+        #accessing current users name
+        email_address = users.get_current_user().email()
+        email_match_model = Profile.query().filter(Profile.email == email_address).get()
+        #appening attendies
+        event.attendies.append(email_match_model.key)
+        event.put()
+        event_query_list = Event.query().order(Event.timeDate).fetch()
+        #Step 3: Use the Jinja environment to get our HTML
+        template_vars = {
+        'logout_link' : users.create_logout_url('/'),
+        'events': event_query_list
+        }
+        template = jinja_env.get_template("templates/main.html")
+        self.response.write(template.render(template_vars))
+
 
 class CreateNewEventPage(webapp2.RequestHandler):
     def get(self):
@@ -91,8 +108,6 @@ class CreateNewEventPage(webapp2.RequestHandler):
         activity = self.request.get("activity")
         location = self.request.get("location")
         meetingtime = self.request.get("meetingtime")
-        global id_num
-        id_num = id_num + 1
         #getting email address of logged in user
         email_address = users.get_current_user().email()
         #getting the right datastore Profile model to match with that email
@@ -102,7 +117,6 @@ class CreateNewEventPage(webapp2.RequestHandler):
             activity = activity,
             location = location,
             #parse meetingtime input string and convert top python datetime obj
-            id = str(id_num),
             timeDate = temp_tim_obj,
             #extracting the name attribute from the right profile and
             #assigning it to the creator attribute of the model
@@ -125,9 +139,9 @@ class JoinEventPage(webapp2.RequestHandler):
 
     def get(self):
         # passing in event clicked variable which holds event specific id and assigninging it variable in python
-        event_specific_id = self.request.get("eventclicked")
+        event_specific_key = self.request.get("eventclicked")
         # going through id's in datastore and matching it with the id we're looking for, then storing that event in event list
-        event = Event.query().filter(Event.id == event_specific_id).get()
+        event = ndb.Key(urlsafe=event_specific_key).get()
         template_vars = {
         #this is the id they clicked
         "event" : event

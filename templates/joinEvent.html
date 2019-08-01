@@ -39,13 +39,19 @@
     <h5>Activity: {{event.activity}}</h2>
     <h5>Time: {{event.timeDate.strftime("%a, %b %d, @ %I:%M %p")}}</h2>
     <h5>Location: {{event.location}}</h3>
-    <h6>Attendies:{% for attendi in event.attendies %}
-     {{attendi.get().name}}
-    {% endfor %}</h4>
+    <h6>Attendies:
+      {% for attendi in event.attendies %}
+        {{attendi.get().name}}
+      {% endfor %}</h4>
 
-    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-    <a href="/main"><button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-      Join the event!
+    <form action="/main" method="post">
+      <input type="hidden" name="eventkey" value={{event.key.urlsafe()}}>
+      <input type="submit" name="submit" value="Submit">
+    </form>
+    <!-- <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+    <a href="/main"><button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="joinEfxn()">
+      Join the event! -->
+
     </button>
     </center>
 
