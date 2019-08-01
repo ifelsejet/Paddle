@@ -18,6 +18,36 @@
 .mdl-layout__header-row .mdl-navigation__link {
     color: black;
 }
+tml {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  padding-bottom: 6rem;
+  min-height: 100%;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+.demo {
+  margin: 0 auto;
+  padding-top: 64px;
+  max-width: 640px;
+  width: 94%;
+}
+
+.demo h1 {
+  margin-top: 0;
+}
+
 ul {
   text-align: left;
   padding-left: 35%;
@@ -27,11 +57,15 @@ ul {
 display: flex;
 flex-wrap: wrap;
 }
+h1, h3{
+  font-family: fantasy;
+}
 
 p{
   margin-left: 30px;
   margin-right: 30px;
-  margin-bottom: 20px:
+  margin-bottom: 20px;
+  font-family: fantasy;
 }
 
 .bioimgs{
@@ -48,8 +82,12 @@ p{
 
 }
 #Kennedy{
-  width: 371;
-  height: 340;
+  width:421px;
+  height:421px;
+}
+#jett{
+  width:421px;
+  height:421px;
 }
 
 .biotext{
@@ -89,4 +127,11 @@ display: block;
   color: #e63232;
   border-color: currentColor;
   background-color: white;
+}
+#footer{
+  text-align: center;
+  color: #777777;
+  padding: 10px 0px 10px 0px;
+  background-color: #212121;
+  font-size:10pt;
 }
