@@ -4,10 +4,10 @@
 <head>
   <meta charset="utf-8">
   <title>About Developers</title>
-  <link href="../stylesheets/about.css" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
   <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <link href="../stylesheets/about.css" rel="stylesheet">
 </head>
 
 <body>
@@ -19,6 +19,9 @@
         <!-- Add spacer, to align navigation to the right -->
         <div class="mdl-layout-spacer"></div>
         <!-- Navigation -->
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" href="{{logout_link}}">Sign Out</a> <!--this doesn't work as intended -->
+        </nav>
       </div>
     </header>
     <div class="mdl-layout__drawer">
