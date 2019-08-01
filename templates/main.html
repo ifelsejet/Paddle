@@ -40,7 +40,7 @@
       <ul>
         {% for event in events %}
         <!-- after question mark assigning specific id to event clicked variable -->
-        <a href="/joinEvent?eventclicked={{event.id}}">
+        <a href="/joinEvent?eventclicked={{event.key.urlsafe()}}">
         <li>
             {{event.activity}}
           <br>
