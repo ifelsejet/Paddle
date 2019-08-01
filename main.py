@@ -70,8 +70,6 @@ class Main(webapp2.RequestHandler):
         #filter for each attribute
         event_query_list = Event.query().order(Event.timeDate).fetch()
         #Step 3: Use the Jinja environment to get our HTML
-        for attendi in event_query_list[1].attendies:
-            print "AAAYY" +attendi.get().name
         template_vars = {
         'logout_link' : users.create_logout_url('/'),
         'events': event_query_list
