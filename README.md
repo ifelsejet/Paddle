@@ -1,5 +1,5 @@
-#Paddle
-A web-app to connect students and create relationships through the sports they love to play!
+# Paddle
+- A web-app to connect students and create relationships through the sports they love to play!
 
 ## What is the mission of our project?
 - Our mission is to connect students that play the same sports and make it
