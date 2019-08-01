@@ -35,11 +35,11 @@
      </div>
   <main class="mdl-layout__content">
     <img id = "grouppic" src="../images/PAddle_Logo21.svg">
-    <h1>Join Event!</h1>
-    <h2>Activity: {{event.activity}}</h2>
-    <h2>Time: {{event.timeDate.strftime("%a, %b %d, @ %I:%M %p")}}</h2>
-    <h3>Location: {{event.location}}</h3>
-    <h4>Attendies:{% for attendi in event.attendies %}
+    <center><h3>Join Event!</h1>
+    <h5>Activity: {{event.activity}}</h2>
+    <h5>Time: {{event.timeDate.strftime("%a, %b %d, @ %I:%M %p")}}</h2>
+    <h5>Location: {{event.location}}</h3>
+    <h6>Attendies:{% for attendi in event.attendies %}
      {{attendi.get().name}}
     {% endfor %}</h4>
 
@@ -47,6 +47,7 @@
     <a href="/main"><button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
       Join the event!
     </button>
+    </center>
 
   </main>
   </body>
