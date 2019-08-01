@@ -4,7 +4,6 @@ import logging
 import jinja2
 import os
 import datetime
-import random
 
 from google.appengine.ext import ndb
 from google.appengine.api import users
@@ -22,7 +21,7 @@ class Event(ndb.Model):
     location = ndb.StringProperty(required = True)
     timeDate = ndb.DateTimeProperty(required = True)
     creator = ndb.StringProperty(required = True)
-    attendies = ndb.IntegerProperty(required = True, default = 1)
+    attendies = ndb.StringProperty(required = True, repeated = True, default = creator)
     id = ndb.StringProperty(required = True)
 
 class Profile(ndb.Model):
@@ -68,9 +67,8 @@ class Main(webapp2.RequestHandler):
     # need to do queryof Event datastore
     def get(self): #for a get request
         #figure out the right filtering
-        #filter for each attribu
+        #filter for each attribute
         event_query_list = Event.query().order(Event.timeDate).fetch()
-        print event_query_list
         #Step 3: Use the Jinja environment to get our HTML
         # for event in event_query_list :
         #
@@ -133,6 +131,13 @@ class JoinEventPage(webapp2.RequestHandler):
         }
         template = jinja_env.get_template("templates/joinEvent.html")
         self.response.write(template.render(template_vars))
+
+    def post(self):
+        # event_specific_id = self.request.get("eventclicked")
+        # # going through id's in datastore and matching it with the id we're looking for, then storing that event in event list
+        # event_list = Event.query().filter(Event.id == event_specific_id).fetch()
+        # event_list[0].attendies = event_list[0].attendies + 1
+
 
 class SignIn_Transition(webapp2.RequestHandler):
     def get(self):
