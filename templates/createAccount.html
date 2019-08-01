@@ -4,14 +4,39 @@
 <head>
   <meta charset="utf-8">
   <title>Create Account</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <link rel = "icon" href = "../images/pingponglogo12.png" type = "image/x-icon">
+  <link href="../stylesheets/about.css" rel="stylesheet">
 </head>
 
 <body>
-  <p><a href="{{logout_link}}">sign out</a></p>
-  <h2>Create an Account!</h2>
+  <div class="demo-layout-transparent mdl-layout mdl-js-layout">
+    <header class="mdl-layout--fixed-header mdl-layout__header mdl-layout__header--transparent">
+      <div class="mdl-layout__header-row">
+        <!-- Title -->
+        <span class="mdl-layout-title"></span>
+        <!-- Add spacer, to align navigation to the right -->
+          <div class="mdl-layout-spacer"></div>
+      </div>
+    </header>
+    <!-- <div class="mdl-layout__drawer">
+      <span class="mdl-layout-title">Main Menu</span>
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" href="/">Main Page</a>
+        <a class="mdl-navigation__link" href="/joinEvent">Join Event</a>
+        <a class="mdl-navigation__link" href="/createEvent">Create Event</a>
+        <a class="mdl-navigation__link" href="/about">About Developers</a>
+      </nav>
+    </div> -->
+    <main class="mdl-layout__content">
+      <img id="group_pic" src="../images/PAddle_Logo21.svg">
+      <h3 id="title">Create an Account</h3>
   <form action="/createaccount" method="post">
-    <label for="Name">Name</label>
+    <center><label for="Name">Name</label>
     <input type="text" placeholder="Enter your first and last name" name="Name" required>
+    <br>
     <br>
     <label for="classYear">Class Year (Freshman, Sophmore, Junior, or Senior)</label>
     <select name="classYear" required>
@@ -22,7 +47,9 @@
       <option value="senior">Senior</option>
     </select>
     <br>
+    <br>
     <input type="submit" name="submit" value="Create Account!">
+  </center>
   </form>
 </body>
 
