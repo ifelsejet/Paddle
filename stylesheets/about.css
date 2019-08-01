@@ -27,18 +27,20 @@ ul {
 display: flex;
 flex-wrap: wrap;
 }
+
 p{
   margin-left: 30px;
   margin-right: 30px;
   margin-bottom: 20px:
 }
+
 .bioimgs{
   display: inline-flex;
   flex-direction: column;
   justify-content: space-between;
   flex-wrap: wrap;
   border: solid;
-  border-radius: 5px;
+  border-radius: 8px;
   vertical-align: top;
   /*display: inline-block;*/
     /* To horizontally center images and caption */
@@ -54,4 +56,33 @@ display: block;
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
+}
+
+.btn{
+  /* default for <button>, but useful for <a> */
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+
+  /* create a small space when buttons wrap on 2 lines */
+  margin: 2px 0;
+
+  /* invisible border (will be colored on hover/focus) */
+  border: solid 1px transparent;
+  border-radius: 4px;
+
+  /* size comes from text & padding (no width/height) */
+  padding: 0.5em 1em;
+
+  /* make sure colors have enough contrast! */
+  color: #ffffff;
+  background-color: #e63232;
+}
+
+/* inverse colors on mouse-over and focus */
+.btn:hover,
+.btn:focus {
+  color: #e63232;
+  border-color: currentColor;
+  background-color: white;
 }
