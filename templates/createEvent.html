@@ -38,10 +38,11 @@
        <div id= "logo">
          <img id = "Paddle" src="../images/PAddle_Logo21.svg">
        </div>
-       <center><h1>Create new event</h1>
+       <center><h1>Create Event</h1>
        <form action="/createEvent" method="post">
-       <h2>Activity type</h2>
-       <select name="activity">
+
+       <label for="activities">Activity Type:</label>
+       <select id="activities" name="activity">
          <option value=""></option>
          <option value="Basketball">Basketball</option>
          <option value="Volleyball">Volleyball</option>
@@ -50,8 +51,11 @@
          <option value="Ultimate Frisbee">Ultimate Frisbee</option>
          <option value="Weight Training">Weight Training</option>
          </select>
-       <h2>Preferred Location</h2>
-         <select name="location">
+         <br>
+         <br>
+         <br>
+       <label for="locations">Preferred Location:</label>
+         <select id="locations" name="location">
            <option value=""></option>
            <option value="Recreation Center">Recreation Center</option>
            <option value="Gameroom">Gameroom</option>
@@ -59,11 +63,16 @@
            <option value="Grass Area">Grass Area</option>
            <option value="Weight Room">Weight Room</option>
          </select>
+         <br>
+         <br>
+         <br>
 
-          <div>
-            <label for="meeting-time">Select a time and date for the activity:</label>
+          <div id=dropdown>
+            <label id=dropdown1 for="meeting-time">Select a time and date for the activity:</label>
 
             <input type="datetime-local" id="meetingtime" name="meetingtime" value="" min="" max="">
+            <br>
+            <br>
             <input type="submit" name="submit" value="Submit">
             </center>
           </div>
