@@ -29,31 +29,33 @@
        <span class="mdl-layout-title">Main Menu</span>
        <nav class="mdl-navigation">
          <a class="mdl-navigation__link" href="/main">Main Page</a>
-         <a class="mdl-navigation__link" href="/joinEvent">Join Event</a>
          <a class="mdl-navigation__link" href="/createEvent">Create Event</a>
          <a class="mdl-navigation__link" href="/about">About Developers</a>
        </nav>
      </div>
   <main class="mdl-layout__content">
-    <img id = "grouppic" src="../images/PAddle_Logo21.svg">
-    <h1>Join Event!</h1>
-    <h2>Activity: {{event.activity}}</h2>
-    <h2>Time: {{event.timeDate.strftime("%a, %b %d, @ %I:%M %p")}}</h2>
-    <h3>Location: {{event.location}}</h3>
-    <h4>attendees:
-      {% for attendi in event.attendees %}
+    <div id= "logo">
+    <img id = "Paddle" src="../images/PAddle_Logo21.svg">
+    </div>
+    <center><h3>Join Event!</h1>
+    <h5>Activity: {{event.activity}}</h2>
+    <h5>Time: {{event.timeDate.strftime("%a, %b %d, @ %I:%M %p")}}</h2>
+    <h5>Location: {{event.location}}</h3>
+    <h6>Attendies:
+      {% for attendi in event.attendies %}
         {{attendi.get().name}}
       {% endfor %}</h4>
 
     <form action="/main" method="post">
       <input type="hidden" name="eventkey" value={{event.key.urlsafe()}}>
-      <input type="submit" name="submit" value="Submit">
+      <input id = "joinEventButton" type="submit" name="submit" value="Submit">
     </form>
     <!-- <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
     <a href="/main"><button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="joinEfxn()">
       Join the event! -->
 
     </button>
+    </center>
 
   </main>
   </body>

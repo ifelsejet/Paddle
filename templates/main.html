@@ -27,18 +27,17 @@
        <span class="mdl-layout-title">Main Menu</span>
        <nav class="mdl-navigation">
          <a class="mdl-navigation__link" href="/main">Main Page</a>
-         <a class="mdl-navigation__link" href="/joinEvent">Join Event</a>
          <a class="mdl-navigation__link" href="/createEvent">Create Event</a>
          <a class="mdl-navigation__link" href="/about">About Developers</a>
        </nav>
      </div>
      <main class="mdl-layout__content">
-       <img id = "grouppic" src="../images/PAddle_Logo21.svg">
-
-    <center>
+       <div id= "logo">
+       <img id= "Paddle" src="../images/PAddle_Logo21.svg">
+     </div>
+     <div id="font"><center>
       <h1>Activities:</h1>
-      <div >
-      <ul>
+      <ul id = "events">
         {% for event in events %}
         <!-- after question mark assigning specific id to event clicked variable -->
         <a href="/joinEvent?eventclicked={{event.key.urlsafe()}}">

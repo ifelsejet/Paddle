@@ -5,7 +5,7 @@
 - Our mission is to connect students that play the same sports and make it
 easier for them to create new friendships!
 
-## What is the mission of our project?
+## What is the purpose of our project?
 - The purpose of our product is to make planning sporting events as easy as possible.
 
 ## What is the need? What is our solution?

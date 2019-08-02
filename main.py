@@ -1,9 +1,9 @@
 import webapp2
-from google.appengine.api import users
 import logging
 import jinja2
 import os
 import datetime
+import json
 
 from google.appengine.ext import ndb
 from google.appengine.api import users
@@ -39,8 +39,18 @@ class School(ndb.Model):
 
 class AboutPage(webapp2.RequestHandler):
     def get(self):
+        template_vars = {
+        'logout_link' : users.create_logout_url(users.create_login_url('/'))
+        }
         template = jinja_env.get_template("templates/about.html")
-        self.response.write(template.render())
+        self.response.write(template.render(template_vars))
+    def post(self):
+        template_vars = {
+        'logout_link' : users.create_logout_url(users.create_login_url('/'))
+        }
+        template = jinja_env.get_template("templates/about.html")
+        self.response.write(template.render(template_vars))
+
 
 class CreateAccount(webapp2.RequestHandler):
     def get(self): #for a get request
@@ -107,8 +117,11 @@ class Main(webapp2.RequestHandler):
 
 class CreateNewEventPage(webapp2.RequestHandler):
     def get(self):
+        template_vars = {
+        'logout_link' : users.create_logout_url('/'),
+        }
         template = jinja_env.get_template("templates/createEvent.html")
-        self.response.write(template.render())
+        self.response.write(template.render(template_vars))
 
     def post(self):
         activity = self.request.get("activity")
@@ -130,6 +143,11 @@ class CreateNewEventPage(webapp2.RequestHandler):
             attendees = [email_match_value.key]
 
         ).put()
+        template_vars = {
+        'logout_link' : users.create_logout_url('/'),
+        }
+        template = jinja_env.get_template("templates/main.html")
+        self.response.write(template.render(template_vars))
 
         self.redirect("/main",True)
 
@@ -149,8 +167,16 @@ class JoinEventPage(webapp2.RequestHandler):
         # going through id's in datastore and matching it with the id we're looking for, then storing that event in event list
         event = ndb.Key(urlsafe=event_specific_key).get()
         template_vars = {
-        #this is the id they clicked
-        "event" : event
+        "event" : event,
+        'logout_link' : users.create_logout_url(users.create_login_url('/'))
+        }
+        template = jinja_env.get_template("templates/joinEvent.html")
+        self.response.write(template.render(template_vars))
+
+
+    def post(self):
+        template_vars = {
+        'logout_link' : users.create_logout_url(users.create_login_url('/'))
         }
         template = jinja_env.get_template("templates/joinEvent.html")
         self.response.write(template.render(template_vars))
@@ -190,7 +216,7 @@ class SignIn_Transition(webapp2.RequestHandler):
 
 class GCalendar(webapp2.RequestHandler):
     def get(self):
-        template = jinja_env.get_template("templates/gcalendar.html")
+        template = jinja_env.get_template("templates/gCalendar.html")
         self.response.write(template.render())
 
 # the app configuration section
