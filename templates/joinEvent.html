@@ -37,14 +37,14 @@
     <div id= "logo">
     <img id = "Paddle" src="../images/PAddle_Logo21.svg">
     </div>
-    <center><h3>Join Event!</h1>
-    <h5>Activity: {{event.activity}}</h2>
-    <h5>Time: {{event.timeDate.strftime("%a, %b %d, @ %I:%M %p")}}</h2>
-    <h5>Location: {{event.location}}</h3>
-    <h6>Attendies:
-      {% for attendi in event.attendies %}
-        {{attendi.get().name}}
-      {% endfor %}</h4>
+    <center><h3>Join Event!</h3>
+    <h5>Activity: {{event.activity}}</h5>
+    <h5>Time: {{event.timeDate.strftime("%a, %b %d, @ %I:%M %p")}}</h5>
+    <h5>Location: {{event.location}}</h5>
+    <h5>Attendees:
+      {% for attendee in event.attendees %}
+        {{attendee.get().name}}
+      {% endfor %}</h5>
 
     <form action="/main" method="post">
       <input type="hidden" name="eventkey" value={{event.key.urlsafe()}}>

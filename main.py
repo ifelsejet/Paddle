@@ -143,20 +143,22 @@ class CreateNewEventPage(webapp2.RequestHandler):
             attendees = [email_match_value.key]
 
         ).put()
+        self.redirect("/main",True)
+
         template_vars = {
         'logout_link' : users.create_logout_url('/'),
         }
         template = jinja_env.get_template("templates/main.html")
         self.response.write(template.render(template_vars))
 
-        self.redirect("/main",True)
+
 
 class JoinEventPage(webapp2.RequestHandler):
     '''
     So, whenever someone clicks the join button, we want to update the number
     of people in the event party by 1.
     Additionally, we want to also list the user's name (ex. John Doe) in the list
-    of people attending.
+    of people attendeeng.
     Finally, once the user has joined an event, we want to send an alert to show
     that they successfuly joined a certain event
     '''
