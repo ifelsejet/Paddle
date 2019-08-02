@@ -40,8 +40,8 @@
     <h2>Activity: {{event.activity}}</h2>
     <h2>Time: {{event.timeDate.strftime("%a, %b %d, @ %I:%M %p")}}</h2>
     <h3>Location: {{event.location}}</h3>
-    <h4>Attendies:
-      {% for attendi in event.attendies %}
+    <h4>attendees:
+      {% for attendi in event.attendees %}
         {{attendi.get().name}}
       {% endfor %}</h4>
 

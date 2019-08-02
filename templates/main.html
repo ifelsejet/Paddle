@@ -34,9 +34,10 @@
      </div>
      <main class="mdl-layout__content">
        <img id = "grouppic" src="../images/PAddle_Logo21.svg">
-     <div>
+
     <center>
       <h1>Activities:</h1>
+      <div >
       <ul>
         {% for event in events %}
         <!-- after question mark assigning specific id to event clicked variable -->
@@ -46,8 +47,11 @@
           <br>
             {{event.timeDate.strftime("%a, %b %d, @ %I:%M %p")}}
           <br>
-            location: {{event.location}}  by: {{event.creator}} attendies:
-             {{event.attendies | length}}
+            Location: {{event.location}}
+          </br>
+            by: {{event.creator}}
+          </br>
+             attendees:{{event.attendees | length}}
           <br>
           <br>
         </li>

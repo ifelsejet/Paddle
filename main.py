@@ -29,7 +29,7 @@ class Event(ndb.Model):
     location = ndb.StringProperty(required = True)
     timeDate = ndb.DateTimeProperty(required = True)
     creator = ndb.StringProperty(required = True)
-    attendies = ndb.KeyProperty(kind = Profile, repeated = True)
+    attendees = ndb.KeyProperty(kind = Profile, repeated = True)
 
 class School(ndb.Model):
     name = ndb.StringProperty(required = True)
@@ -70,8 +70,6 @@ class Main(webapp2.RequestHandler):
         #filter for each attribute
         event_query_list = Event.query().order(Event.timeDate).fetch()
         #Step 3: Use the Jinja environment to get our HTML
-        for attendi in event_query_list[1].attendies:
-            print "AAAYY" +attendi.get().name
         template_vars = {
         'logout_link' : users.create_logout_url('/'),
         'events': event_query_list
@@ -79,24 +77,32 @@ class Main(webapp2.RequestHandler):
         template = jinja_env.get_template("templates/main.html")
         self.response.write(template.render(template_vars))
     def post(self):
+        #accessing current users name
+        email_address = users.get_current_user().email()
+        profile_match_model = Profile.query().filter(Profile.email == email_address).get()
 
         eventkey = self.request.get('eventkey')
         event = ndb.Key(urlsafe=eventkey).get()
 
-        #accessing current users name
-        email_address = users.get_current_user().email()
-        email_match_model = Profile.query().filter(Profile.email == email_address).get()
-        #appening attendies
-        event.attendies.append(email_match_model.key)
-        event.put()
-        event_query_list = Event.query().order(Event.timeDate).fetch()
-        #Step 3: Use the Jinja environment to get our HTML
-        template_vars = {
-        'logout_link' : users.create_logout_url('/'),
-        'events': event_query_list
-        }
-        template = jinja_env.get_template("templates/main.html")
-        self.response.write(template.render(template_vars))
+        bool_match = False
+        for attendee in event.attendees:
+            if (attendee == profile_match_model.key):
+                print "HEY"
+                bool_match = True
+                break
+
+        if bool_match:
+            self.redirect("/main",True)
+        else:
+            print "AAYY"
+            event.attendees.append(profile_match_model.key)
+            event.put()
+            self.redirect("/main",True)
+
+
+
+
+
 
 
 class CreateNewEventPage(webapp2.RequestHandler):
@@ -121,7 +127,7 @@ class CreateNewEventPage(webapp2.RequestHandler):
             #extracting the name attribute from the right profile and
             #assigning it to the creator attribute of the model
             creator = email_match_value.name,
-            attendies = [email_match_value.key]
+            attendees = [email_match_value.key]
 
         ).put()
 
@@ -153,7 +159,7 @@ class JoinEventPage(webapp2.RequestHandler):
         # event_specific_id = self.request.get("eventclicked")
         # # going through id's in datastore and matching it with the id we're looking for, then storing that event in event list
         # event_list = Event.query().filter(Event.id == event_specific_id).fetch()
-        # event_list[0].attendies = event_list[0].attendies + 1
+        # event_list[0].attendees = event_list[0].attendees + 1
 
 
 class SignIn_Transition(webapp2.RequestHandler):
