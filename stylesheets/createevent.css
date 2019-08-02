@@ -30,3 +30,35 @@ mdl-layout__header-row .mdl-navigation__link {
   background-color: #212121;
   font-size:10pt;
 }
+h1{
+  font-family: monospace;
+}
+#dropdown1{
+  font-size: 1000px:
+}
+.btn{
+  /* default for <button>, but useful for <a> */
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+
+  /* create a small space when buttons wrap on 2 lines */
+  margin: 2px 0;
+
+  /* invisible border (will be colored on hover/focus) */
+  border: solid 1px transparent;
+  border-radius: 4px;
+
+  /* size comes from text & padding (no width/height) */
+  padding: 0.5em 1em;
+
+  /* make sure colors have enough contrast! */
+  color: #ffffff;
+  background-color: #e63232;
+}
+.btn:hover,
+.btn:focus {
+  color: #e63232;
+  border-color: currentColor;
+  background-color: white;
+}
