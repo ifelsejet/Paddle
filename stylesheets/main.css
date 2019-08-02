@@ -12,7 +12,12 @@ ul{
   color: black;
 }
 #logo{
-  height,width:50%;
+  display:flex;
+  align-items:center;
+  justify-content: center;
+}
+#Paddle{
+  width:70%;
 }
 .mdl-layout__header-row .mdl-navigation__link {
   color: black;

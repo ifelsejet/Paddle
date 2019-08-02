@@ -6,10 +6,14 @@ h2{
 mdl-layout__header-row .mdl-navigation__link {
   color: black;
 }
-#grouppic{
-  width:100%;
+#Paddle{
+  width:70%;
 }
-
+#logo{
+  display:flex;
+  align-items:center;
+  justify-content: center;
+}
 .demo-layout-transparent .mdl-layout__header,
 .demo-layout-transparent .mdl-layout__drawer-button {
   /* This background is dark, so we set text to white. Use 87% black instead if

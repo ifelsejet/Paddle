@@ -1,5 +1,13 @@
 #group_pic{
   width: 100%;
+  /* margin-top: 170px; */
+}
+#fullpage{
+  display: flex;
+  overflow:hidden;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
 }
 .demo-layout-transparent .mdl-layout__header,
 .demo-layout-transparent .mdl-layout__drawer-button {
@@ -22,7 +30,10 @@ tml {
   height: 100%;
   box-sizing: border-box;
 }
+ul{
+  font-family: fantasy;
 
+}
 *,
 *:before,
 *:after {
@@ -49,8 +60,12 @@ body {
 }
 
 ul {
-  text-align: left;
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-bottom: 20px
   padding-left: 35%;
+  list-style: none;
+  padding:0;
 }
 .project {
 /*text-align: center;*/
@@ -62,9 +77,8 @@ h1, h3{
 }
 
 p{
-  margin-left: 30px;
-  margin-right: 30px;
-  margin-bottom: 20px;
+  display:flex;
+  justify-content: center;
   font-family: fantasy;
 }
 
@@ -81,14 +95,11 @@ p{
   text-align: center;
 
 }
-#Kennedy{
+#jett,#Kennedy,#taylore{
   width:421px;
   height:421px;
 }
-#jett{
-  width:421px;
-  height:421px;
-}
+
 
 .biotext{
 display: block;
