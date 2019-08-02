@@ -182,7 +182,7 @@ class SignIn_Transition(webapp2.RequestHandler):
 
 class GCalendar(webapp2.RequestHandler):
     def get(self):
-        template = jinja_env.get_template("templates/gcalendar.html")
+        template = jinja_env.get_template("templates/gCalendar.html")
         self.response.write(template.render())
 
 # the app configuration section
