@@ -22,10 +22,9 @@ ul{
 .mdl-layout__header-row .mdl-navigation__link {
   color: black;
 }
-#footer{
-  text-align: center;
-  color: #777777;
-  padding: 10px 0px 10px 0px;
-  background-color: #212121;
-  font-size:10pt;
+#font{
+  font-family: monospace;
+}
+h1{
+  font-family: monospace;
 }

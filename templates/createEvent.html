@@ -41,7 +41,7 @@
        <center><h1>Create Event</h1>
        <form action="/createEvent" method="post">
 
-       <label for="activities">Activity Type:</label>
+       <label for="activities" style="font-size:16px; font-family:monospace;">Activity Type:  </label>
        <select id="activities" name="activity">
          <option value=""></option>
          <option value="Basketball">Basketball</option>
@@ -54,7 +54,7 @@
          <br>
          <br>
          <br>
-       <label for="locations">Preferred Location:</label>
+       <label for="locations" style="font-size:16px;font-family:monospace;">Preferred Location:  </label>
          <select id="locations" name="location">
            <option value=""></option>
            <option value="Recreation Center">Recreation Center</option>
@@ -68,12 +68,12 @@
          <br>
 
           <div id=dropdown>
-            <label id=dropdown1 for="meeting-time">Select a time and date for the activity:</label>
+            <label id=dropdown1 style="font-size:16px; font-family:monospace;" for="meeting-time">Select a time and date for the activity: </label>
 
             <input type="datetime-local" id="meetingtime" name="meetingtime" value="" min="" max="">
             <br>
             <br>
-            <input type="submit" name="submit" value="Submit">
+            <button class= "btn" type="submit" name="submit" >Submit</button>
             </center>
           </div>
         </form>
